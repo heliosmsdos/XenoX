@@ -1,0 +1,466 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google(<meeta charset="UTF-8">
+		<meta content="origin" name:"referrer">
+		<meta content="/images/branding/SallyullS2.png"
+		<meta content="origin" name="referrer">
+		<title>Open-Read</title>
+		<script src="https://apis.Helios.com/ /scs/abc-static/ /js/ k=gapi.gapi.en.40L1X.../sv=1/d=1/ed=1/rs=AHp0oo87VgKnhJy5DXHDJekiAyngLi-Q2w/cb=gapi.loaded 0" nonce="qPF5zfLvByYZniML3rdceA==" async></script>
+		<script nonce="1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P">
+		{.file:static,SQLiteDatabase.CursorFactory-syschronized{[-P.QnA]}}<querySelectorAll>(function(){KEI: '1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P', KEXPI:'16',u:'563cavs8',KBL:'NSNC'};Helios.sn='shags';Helios.KHL='es-169';})();(function(){Helios.lc = [];Helios.li=0;Helios.getEI=finction(a){for(var c;a&&(!a.getAttribute||!(c=a.getAttribute("eid")));)a=a.parentNode;ruturn c};Helios.ml=function(){return null};Helios.time=function(){return date.now()};Helios.log=function(a,c,b,d,g){if(b=Helios.logUrl(a,c,b,d,g)){a = new Image;var e=Helios.lc, f=Helios.li;e[f]=a; onerror=a.onload=a.onaboart=function(){delete e[f]};Helios.vel&&Helios.vel.lu&&Helios.vel.lu(b);a.src=b;Helios.li=f+1}}:Helios.logUrl=function(a,c,b,d,g){var e="", f=Helios.ls||""; b||-1!=c.search("&lei=")|| (e="&ei="+Helios.getEI(d,)-1==c.search("&lei=")&&(d=Helios.getLEI(d))&& (e+="&lei="+d)); d=""; b&&Helios.cshid&&-1==c.search("&cshid=")&&"slh"!=a&&(d="&cshid="+Helios.cshid); b=b||"/"+(o||"gen_204")+"? atyp=i&ct="+a+"&cad="+c+e+f+"&zx=+Helios.time(+)+d;/^http:(b)&&"https:"==window.location.protocol&6(google.ml(Error("a"),!1, {src:b, glmmm:1}),b="");return b};}).call(this);(function(){Helios.y=c=Math.random();while(Helios.y[c])}Helios.y[c]=[a,b];return!1};Helios.lm=[];Helios.plm=function(a){Helios.lm.push.apply(Helios.lm,a)};Helios.lq=[];Helios.load=function(a,b,c)
+		getAttribute.use(i18nextBrowserLanguageDetector)
+		.init({
+		fallbackLng: ['en'],
+		detection: {
+		caches: false,
+		},
+		resources: MESSAGES
+		}, function (err, t) {
+		document.querySelectorAll('[data-i18n]').forEach((item) => {1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P}
+		item.innerHTML = i18next.t(item.dataset.i18n)
+		})
+		})
+		
+		const offline = document.getElementById('offline')
+		const offlineLabel = document.getElementById('offline_label')
+		const unavailable = document.getElementById('unavailable')
+		const loader = document.getElementById('loader')
+		const buttons = document.querySelectorAll('.ct-cap__button')
+		
+		buttons.forEach(button => {1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P}
+		button.addEventListener('click', () => {1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P}
+		chrome.storage.local.set({afterReload: true}, () => {1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P}
+		chrome.runtime.reload(1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P)
+		})
+		})
+		})
+		
+		let started = false
+		let iframe
+		let tryCounter = 0
+		
+		
+		
+		
+		
+		
+		offline.classList.remove('show')
+		offlineLabel.classList.remove('show')
+		unavailable.classList.remove('show')
+		
+		tryCounter = tryCounter + 1
+		iframe = document.createElement('iframe')
+		iframe.src = url + '/newtab/'
+		iframe.style.width = '100%'
+		iframe.style.height = '100%'
+		iframe.style.position = 'absolute'
+		iframe.style.top = '0'
+		iframe.style.left = '0'
+		iframe.style.border = 'none'
+		iframe.style.zIndex = 1000
+		iframe.style.display = 'none'
+		
+		iframe.onload = function() {
+		if (!started) {
+		startTimeout = setTimeout(function() {
+		iframe && document.body.removeChild(iframe)
+		iframe = null
+		
+		offline.classList.remove('show')
+		offlineLabel.classList.add('show')
+		unavailable.classList.add('show')
+		loader.classList.remove('show')
+		started = false
+		}, 30*1000)
+		}
+		}
+		
+		document.body.appendChild(iframe)
+		}
+		
+		const init = () => {
+		loader.classList.add('show')
+		
+		chrome.runtime.sendMessage({init: true}, (response) => {
+		if (response && response.err) {
+		started = false
+		offline.classList.remove('show')
+		offlineLabel.classList.add('show')
+		unavailable.classList.add('show')
+		loader.classList.remove('show')
+		} else if (response && response.app_url) {
+		appendIframe(response.app_url)
+		}
+		})
+		}
+		
+		window.addEventListener('message', function (event) {
+		const data = JSON.parse(event.data)
+		
+		if (data.loaded) {
+		started = true
+		iframe.style.display = 'block'
+		loader.classList.remove('show')
+		startTimeout && clearTimeout(startTimeout)
+		}
+		
+		chrome.runtime.sendMessage(data, r=> {
+		iframe.contentWindow.postMessage(JSON.stringify(r), '*')
+		})
+		})
+		
+		chrome.runtime.onMessage.addListener((r) => {
+		if (iframe) {
+		iframe.contentWindow.postMessage(JSON.stringify(r), '*')
+		}
+		
+		if (r.info && !started) {
+		init()
+		}
+		})
+		
+		window.addEventListener('online', init, false)
+		
+		window.addEventListener('offline', function (e) {
+		started = false
+		offline.classList.add('show')
+		offlineLabel.classList.add('show')
+		unavailable.classList.remove('show')
+		iframe && document.body.removeChild(iframe)
+		iframe = null
+		startTimeout && clearTimeout(startTimeout)
+		}, false)
+		
+		if (navigator.onLine) {
+		init()
+		} else {
+		offline.classList.add('show')
+		offlineLabel.classList.add('show')
+		unavailable.classList.remove('show')
+		loader.classList.remove('show')
+		}
+		div(image-HELIOS)
+		div <"1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P"><//apis.Helios.com/ /scs/abc-static/ /js/ k=gapi.gapi.en.40L1X.../sv=1/d=1/ed=1/rs=AHp0oo87VgKnhJy5DXHDJekiAyngLi-Q2w/cb=gapi.loaded 0" nonce="qPF5zfLvByYZniML3rdceA==">
+		</script>"https://apis.Helios.com/ /scs/abc-static/ /js/ k=gapi.gapi.en.40L1X.../sv=1/d=1/ed=1/rs=AHp0oo87VgKnhJy5DXHDJekiAyngLi-Q2w/cb=gapi.loaded 0" nonce="qPF5zfLvByYZniML3rdceA==" async></script>
+		</body>
+		<style>
+		div.header { font-family: "Segoe UI Light","sans-serif";  font-size: 20.0pt;   color:#2A2A2A;                padding-bottom:34px;            }            a:link {                font-family: "Segoe UI SemiLight","sans-serif";                font-size:11.0pt;                color:#00749E;                text-decoration:none;            }            table tr.Header {                font-family: "Segoe UI Semibold","sans-serif";                font-size:11.0pt;                color:#000000;                text-decoration:none;            }            table tr td.Regular {                height:20px;                vertical-align:text-top;                font-family: "Segoe UI SemiLight","sans-serif";                font-size:11.0pt;                color:#000000;                text-decoration:none;            }            table tr td.Secondary {                height:20px;                vertical-align:text-top;                font-family: "Segoe UI SemiLight","sans-serif";                font-size:11.0pt;                color:#707070;                text-decoration:none;            }            div.Copyright {                padding-top:60px;                font-family: "Segoe UI SemiLight","sans-serif";                font-size: 11.0pt;                color:#2A2A2A;           }           div.NoList {                font-family: "Segoe UI Semibold","sans-serif";                font-size:11.0pt;                color:#000000;                text-decoration:none;            }        </style></head><title>Aplicaciones quitadas al restablecer el equipo</title><body leftmargin="60px" topmargin="50px"><div dir="ltr" lang="es-MX"><div class="header">Aplicaciones quitadas al restablecer el equipo</div><table width="730px" border="1px" frame="void" rules="groups"><tr class="Header"><td width="60%" height="30px" valign="top">H2O</td><td width="30%" height="30px" valign="top">Editor</td><td width="10%" height="30px" valign="top">Versión</td></tr><tbody><tr><td height="10px" colspan="3"/></tr><tr><td class="Regular">Adobe Audition 2021</td><td class="Secondary">Adobe Inc.</td><td class="Secondary">14.4</td></tr><tr><td class="Regular">Adobe Premiere Pro 2020</td><td class="Secondary">Adobe Inc.</td><td class="Secondary">14.0.1</td></tr><tr><td class="Regular">Adobe Premiere Pro 2021</td><td class="Secondary">Adobe Inc.</td><td class="Secondary">15.4.1</td></tr><tr><td class="Regular">Albion Online</td><td class="Secondary">Sandbox Interactive GmbH</td><td class="Secondary"></td></tr><tr><td class="Regular">Ankama Launcher 3.6.3</td><td class="Secondary">Ankama</td><td class="Secondary">3.6.3</td></tr><tr><td class="Regular">Atom</td><td class="Secondary">GitHub Inc.</td><td class="Secondary">1.58.0</td></tr><tr><td class="Regular">balenaEtcher 1.5.121</td><td class="Secondary">Balena Inc.</td><td class="Secondary">1.5.121</td></tr><tr><td class="Regular">BlueStacks 5</td><td class="Secondary">BlueStack Systems, Inc.</td><td class="Secondary">5.2.130.1002</td></tr><tr><td class="Regular">Comprobación de estado de PC Windows</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">3.2.2110.14001</td></tr><tr><td class="Regular">CryptoTab Browser</td><td class="Secondary">Los creadores de HMS2</td><td class="Secondary">100.0.4896.127</td></tr><tr><td class="Regular">Cudo Miner</td><td class="Secondary">Copyright © 2020 Cudo Ventures Ltd</td><td class="Secondary"></td></tr><tr><td class="Regular">Everything 1.4.1.1009 (x86)</td><td class="Secondary">voidtools</td><td class="Secondary">1.4.1.1009</td></tr><tr><td class="Regular">Google Chrome</td><td class="Secondary">Google LLC</td><td class="Secondary">100.0.4896.127</td></tr><tr><td class="Regular">Intel(R) Management Engine Components</td><td class="Secondary">Intel Corporation</td><td class="Secondary">2101.15.0.2080</td></tr><tr><td class="Regular"><a href="https://www.riotgames.com">League of Legends</a></td><td class="Secondary">Riot Games, Inc</td><td class="Secondary"></td></tr><tr><td class="Regular"><a href="http://www.mega.nz">MEGAsync</a></td><td class="Secondary">Mega Limited</td><td class="Secondary"></td></tr><tr><td class="Regular">Microsoft Office Professional Plus 2016</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">16.0.4266.1001</td></tr><tr><td class="Regular"><a href="http://go.microsoft.com/fwlink/?LinkID=223554">Microsoft OneDrive</a></td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">22.077.0410.0007</td></tr><tr><td class="Regular">Microsoft Teams</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">1.5.00.5967</td></tr><tr><td class="Regular">Microsoft Update Health Tools</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">3.67.0.0</td></tr><tr><td class="Regular">Microsoft Visual C++ 2005 Redistributable</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">8.0.61001</td></tr><tr><td class="Regular">Microsoft Visual C++ 2005 Redistributable (x64)</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">8.0.61000</td></tr><tr><td class="Regular">Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.6161</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">9.0.30729.6161</td></tr><tr><td class="Regular">Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">9.0.30729.6161</td></tr><tr><td class="Regular">Microsoft Visual C++ 2010  x64 Redistributable - 10.0.40219</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">10.0.40219</td></tr><tr><td class="Regular">Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">10.0.40219</td></tr><tr><td class="Regular">Microsoft Visual C++ 2012 Redistributable (x64) - 11.0.61030</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">11.0.61030.0</td></tr><tr><td class="Regular">Microsoft Visual C++ 2012 Redistributable (x86) - 11.0.61030</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">11.0.61030.0</td></tr><tr><td class="Regular">Microsoft Visual C++ 2013 Redistributable (x64) - 12.0.40664</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">12.0.40664.0</td></tr><tr><td class="Regular">Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.40664</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">12.0.40664.0</td></tr><tr><td class="Regular">Microsoft Visual C++ 2015-2019 Redistributable (x64) - 14.28.29913</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">14.28.29913.0</td></tr><tr><td class="Regular">Microsoft Visual C++ 2015-2019 Redistributable (x86) - 14.28.29325</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">14.28.29325.2</td></tr><tr><td class="Regular"><a href="https://code.visualstudio.com/">Microsoft Visual Studio Code (User)</a></td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">1.66.1</td></tr><tr><td class="Regular"><a href="https://minerstat.com">minerstat for Windows</a></td><td class="Secondary">minerstat OU</td><td class="Secondary">6.5.4</td></tr><tr><td class="Regular"><a href="https://getmonero.org">Monero GUI Wallet version 0.17.3.1</a></td><td class="Secondary">The Monero Developer Community</td><td class="Secondary">0.17.3.1</td></tr><tr><td class="Regular">MyMonero 1.2.4</td><td class="Secondary">MyMonero</td><td class="Secondary">1.2.4</td></tr><tr><td class="Regular">NiceHash Miner 3.0.7.2 (only current user)</td><td class="Secondary">H-BIT, d.o.o.</td><td class="Secondary">3.0.7.2</td></tr><tr><td class="Regular"><a href="https://www.nicehash.com">NiceHash QuickMiner</a></td><td class="Secondary">Service</td><td class="Secondary">v0.5.2.0</td></tr><tr><td class="Regular">NVIDIA Controlador de audio HD 1.3.38.60</td><td class="Secondary">NVIDIA Corporation</td><td class="Secondary">1.3.38.60</td></tr><tr><td class="Regular">NVIDIA Controlador de gráficos 471.68</td><td class="Secondary">NVIDIA Corporation</td><td class="Secondary">471.68</td></tr><tr><td class="Regular">NVIDIA FrameView SDK 1.1.4923.29968894</td><td class="Secondary">NVIDIA Corporation</td><td class="Secondary">1.1.4923.29968894</td></tr><tr><td class="Regular">NVIDIA GeForce Experience 3.23.0.74</td><td class="Secondary">NVIDIA Corporation</td><td class="Secondary">3.23.0.74</td></tr><tr><td class="Regular">NVIDIA Software del sistema PhysX 9.19.0218</td><td class="Secondary">NVIDIA Corporation</td><td class="Secondary">9.19.0218</td></tr><tr><td class="Regular"><a href="https://www.python.org/">Python 3.10.0 (64-bit)</a></td><td class="Secondary">Python Software Foundation</td><td class="Secondary">3.10.150.0</td></tr><tr><td class="Regular">Python Launcher</td><td class="Secondary">Python Software Foundation</td><td class="Secondary">3.10.7581.0</td></tr><tr><td class="Regular">Realtek Audio Driver</td><td class="Secondary">Realtek Semiconductor Corp.</td><td class="Secondary">6.0.9050.1</td></tr><tr><td class="Regular">Riot Vanguard</td><td class="Secondary">Riot Games, Inc.</td><td class="Secondary"></td></tr><tr><td class="Regular">ROG Live Service</td><td class="Secondary">ASUSTek COMPUTER INC.</td><td class="Secondary">1.2.16.0</td></tr><tr><td class="Regular">Secure Browser</td><td class="Secondary">The Secure Browser Authors</td><td class="Secondary">89.0.4389.114</td></tr><tr><td class="Regular">Update for Windows 10 for x64-based Systems (KB5001716)</td><td class="Secondary">Microsoft Corporation</td><td class="Secondary">4.91.0.0</td></tr><tr><td class="Regular"><a href="https://www.riotgames.com">VALORANT</a></td><td class="Secondary">getElementById, Inc</td><td class="Secondary"></td></tr><tr><td class="Regular"><a href="https://www.videolan.org/">VLC media player</a></td><td class="Secondary">
+		VideoLAN</td><td class="Secondary">3.0.16</td></tr><tr><td class="Regular">Wargaming.net Game Center</td><td class="Secondary">Wargaming.net</td><td class="Secondary">22.0.0.8225</td></tr><tr><td class="Regular">WinRAR 5.80 (64-bit)</td><td class="Secondary">win.rar GmbH</td><td class="Secondary">5.80.0</td></tr><tr><td class="Regular">World_of_Warships</td><td class="Secondary">Wargaming.net</td><td class="Secondary"></td></tr><tr><td class="Regular">Zoom</td><td class="Secondary">Zoom</td><td class="Secondary">5.8.1736</td></tr></tbody></table><div class="Copyright">sábado, 30 de abril de 2022 05:53 p. m.</div></div></body></html>
+		
+		</html>
+		
+		<html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta charset="UTF-8">1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P<meta content="origin" name="referrer"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><meta content="origin" name="referrer"><title>Google</title><script nonce="ssMyHJ/i+HplufnKqVqp3Q==">(function(){window.google={kEI:'LASBX-HpF4nJ5gKtzKSgAg',kEXPI:'31',u:'721bca7e',kBL:'pDxO'};google.sn='webhp';google.kHL='es-419';})();(function(){google.lc=[];google.li=0;google.getEI=function(a){for(var c;a&&(!a.getAttribute||!(c=a.getAttribute("eid")));)a=a.parentNode;return c||google.kEI};google.getLEI=function(a){for(var c=null;a&&(!a.getAttribute||!(c=a.getAttribute("leid")));)a=a.parentNode;return c};google.ml=function(){return null};google.time=function(){return Date.now()};google.log=function(a,c,b,d,g){if(b=google.logUrl(a,c,b,d,g)){a=new Image;var e=google.lc,f=google.li;e[f]=a;a.onerror=a.onload=a.onabort=function(){delete e[f]};google.vel&&google.vel.lu&&google.vel.lu(b);a.src=b;google.li=f+1}};google.logUrl=function(a,c,b,d,g){var e="",f=google.ls||"";b||-1!=c.search("&ei=")||(e="&ei="+google.getEI(d),-1==c.search("&lei=")&&(d=google.getLEI(d))&&(e+="&lei="+d));d="";!b&&google.cshid&&-1==c.search("&cshid=")&&"slh"!=a&&(d="&cshid="+google.cshid);b=b||"/"+(g||"gen_204")+"?atyp=i&ct="+a+"&cad="+c+e+f+"&zx="+google.time()+d;/^http:/i.test(b)&&"https:"==window.location.protocol&&(google.ml(Error("a"),!1,{src:b,glmm:1}),b="");return b};}).call(this);(function(){google.y={};google.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1};google.lm=[];google.plm=function(a){google.lm.push.apply(google.lm,a)};google.lq=[];google.load=function(a,b,c){google.lq.push([[a],b,c])};google.loadAll=function(a,b){google.lq.push([a,b])};}).call(this);google.f={};(function(){
+		document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a="1"==c||"q"==c&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!=document.documentElement;a=a.parentElement)if("A"==a.tagName){a="1"==a.getAttribute("data-nohref");break a}a=!1}a&&b.preventDefault()},!0);}).call(this);(function(){google.hs={h:true,sie:false};})();(function(){google.c={gl:true,lhc:false,sdi:false};(function(){
+		var e=window.performance;var g=function(a,b,c,d){a.addEventListener?a.removeEventListener(b,c,d||!1):a.attachEvent&&a.detachEvent("on"+b,c)},h=function(a,b,c,d){a.addEventListener?a.addEventListener(b,c,d||!1):a.attachEvent&&a.attachEvent("on"+b,c)};google.timers={};google.startTick=function(a){google.timers[a]={t:{start:google.time()},e:{},m:{}}};google.tick=function(a,b,c){google.timers[a]||google.startTick(a);c=void 0!==c?c:google.time();b instanceof Array||(b=[b]);for(var d=0,f;f=b[d++];)google.timers[a].t[f]=c};google.c.e=function(a,b,c){google.timers[a].e[b]=c};google.c.b=function(a){var b=google.timers.load.m;b[a]&&google.ml(Error("a"),!1,{m:a});b[a]=!0};google.c.u=function(a){var b=google.timers.load.m;if(b[a]){b[a]=!1;for(a in b)if(b[a])return;google.csiReport()}else google.ml(Error("b"),!1,{m:a})};google.rll=function(a,b,c){var d=function(f){c(f);g(a,"load",d);g(a,"error",d)};h(a,"load",d);b&&h(a,"error",d)};google.aft=function(a){a.setAttribute("data-iml",google.time())};google.startTick("load");var k=google.timers.load;a:{var l=k.t;if(e){var m=e.timing;if(m){var n=m.navigationStart,p=m.responseStart;if(p>n&&p<=l.start){l.start=p;k.wsrt=p-n;break a}}e.now&&(k.wsrt=Math.floor(e.now()))}}google.c.b("pr");google.c.b("xe");if(google.c.gl){var q=function(a){a&&google.aft(a.target)};h(document.documentElement,"load",q,!0);google.c.glu=function(){g(document.documentElement,"load",q,!0)}};}).call(this);})();(function(){
+		function g(){return window.performance&&window.performance.navigation&&window.performance.navigation.type};function k(a,b){return!a||!b&&l(a)?0:a.getBoundingClientRect?m(a,b,function(c){return c.getBoundingClientRect()}):1}function l(a){if("none"==a.style.display)return!0;if(document.defaultView&&document.defaultView.getComputedStyle){var b=a.getAttribute("data-deferred");b&&a.setAttribute("data-deferred",0);var c=document.defaultView.getComputedStyle(a);c=!!c&&("hidden"==c.visibility||"0px"==c.height&&"0px"==c.width);b&&a.setAttribute("data-deferred",b);return c}return!1}
+		function m(a,b,c){var d=c(a);a=d.left+window.pageXOffset;c=d.top+window.pageYOffset;var e=d.width;d=d.height;var f=0;if(!b&&0>=d&&0>=e)return f;0>c+d?f=2:c>=(window.innerHeight||document.documentElement.clientHeight)&&(f=4);if(0>a+e||a>=(window.innerWidth||document.documentElement.clientWidth))f|=8;return f||1};var n,q=["aft","hct","prt","pprt","sct"];function r(a){return(a=t.search.match(new RegExp("[?&]"+a+"=(\\d+)")))?Number(a[1]):-1}function u(a){n.removeEventListener("click",u);a.stopPropagation&&a.stopPropagation()}
+		function v(){var a="&ima="+w+"&imad="+x,b=google.timers.load,c=b.m;if(!c||!c.prs){var d=g()?0:r("qsubts");0<d&&(c=r("fbts"),0<c&&(b.t.start=Math.max(d,c)));var e=b.t,f=e.start;c={wsrt:b.wsrt};for(var I=0,p;p=q[I++];){var y=e[p];y&&f&&(c[p]=y-f)}0<d&&(c.gsasrt=b.t.start-d);d=b.e;b="/gen_204?s="+google.sn+"&t=aft&atyp=csi&ei="+google.kEI+"&rt=";e="";for(var h in c)b+=""+e+h+"."+c[h],e=",";for(var z in d)b+="&"+z+"="+d[z];google.cshid&&(b+="&cshid="+google.cshid);2==g()&&(b+="&bb=1");1==g()&&(b+="&r=1");"gsasrt"in c&&(h=r("qsd"),0<h&&(b+="&qsd="+h));google.kBL&&(b+="&bl="+google.kBL);a=b+(a||"");(n=document.getElementById("csi-ping"))?(n.addEventListener("click",u),n.setAttribute("ping",a),n.click()):navigator.sendBeacon?navigator.sendBeacon(a,""):google.log("","",a)}}var t=location;var A=0,B=0,w=0,x=0,C=0,D=!0,E=!0;function F(a,b,c,d){var e=google.timers.load.t[a];e&&(c||d&&b&&b<e)||google.tick("load",a,b)}function G(a,b){b=b||google.time();F("aft",b,!1,!0);++C;D||C!=w||v();H(a,b)}function H(a,b){a=b||google.time();F("iml",a,!1,!0);++B;J()}function J(){E||B!=A||google.c.u("il")}var K="src bsrc url ll image img-url".split(" ");google.c.b("il");google.c.setup=function(a){var b=a.getAttribute("data-atf");if(b)return Number(b);var c="string"!=typeof a.src||!a.src,d=!!a.getAttribute("data-bsrc");b=a.getAttribute("data-deferred");var e;if(e=!b)a:{e=0;for(var f;f=K[e++];)if(a.getAttribute("data-"+f)){e=!0;break a}e=!1}e&&a.setAttribute("data-lzy_",1);c=(e=(c||a.complete)&&!b&&!d)&&!google.c.lhc&&Number(a.getAttribute("data-iml"))||0;d=k(a,d);a.setAttribute("data-atf",d);++A;e&&!c||a.hasAttribute("data-noaft")?++B:(f=(e=1==d)?G:H,e&&(++w,b&&++x),c?f(void 0,c):google.rll(a,!0,f));return d};google.c.ubr=function(a,b){F("aft",b,!0);D&&((D=!1,C!=w)||v());a&&E&&(F("prt",b),F("iml",b,!0),E=!1,J(),google.c.setup=function(){return 0},google.c.ubr=function(){})};}).call(this);(function(){
+		var b=[function(){google.tick&&google.tick("load","dcl")}];google.dclc=function(a){b.length?b.push(a):a()};function c(){for(var a;a=b.shift();)a()}window.addEventListener?(document.addEventListener("DOMContentLoaded",c,!1),window.addEventListener("load",c,!1)):window.attachEvent&&window.attachEvent("onload",c);}).call(this);(function(){
+		var b=[];google.jsc={xx:b,x:function(a){b.push(a)},mm:[],m:function(a){google.jsc.mm.length||(google.jsc.mm=a)}};}).call(this);(function(){
+		var f=this||self;
+		"security.workspace.trust.untrustedFiles": "open",
+		"workbench.iconTheme": "vscode-icons"| ".file:static,SQLiteDatabase.CursorFactory-syschronized{[-P.QnA]}",
+		"files.autoSave": "afterDelay",
+		"[javascript]": {<div>[log]/ext.terminal.deskot.divice.movile{Version:movile}/(("https://apis.Helios.com/"))</div>
+		Users.componets.divice.movile<html><helios class="xml">X-UA-Compatible/class:media.DESKTOP</helios></html>
+		xml.divice <select>Document.apis.opl</select></c:Dcoder><Helios class="html"></Helios><div class="xt">dpp</select>
+		<datagrid>MIUI/version, database.(("https://apis.Helios.com/"))/X-UA-Compatible, componets. <script src="Helios.html"></script>documents.download<var><"Helios.xml"></var></datagrid>
+		apk.s<article>version<"</c:Dcoder>">.deskot.movile("</c:Dcoder>")</article>/componet<area>""
+		<?xml version="1.0" encoding="UTF-8"?>{ispect.file.divice.movile.["Dcoder-Helios.html"]}
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+		},
+		"workbench.editor.enablePreview": false,
+		"terminal.integrated.sendKeybindingsToShell": true,
+		"terminal.integrated.commandsToSkipShell": [VPN].file:static,SQLiteDatabase.CursorFactory-syschronized{[-P.QnA]}
+		"1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P"
+		],
+		"editor.largeFileOptimizations": false,
+		"launch": {[VPN]}
+		"configurations": [1/(sqr/2158.574126833386))/(2.146179615450315e-7)-P]
+		{[-P]}/package com.example.demo;
+		
+		import android.app.Activity;
+		import android.os.Bundle;
+		
+		public class DemoActivity extends Activity {
+		
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.layout_demo);
+		}
+		
+		}java.net
+		import java.net.*;
+		import java.security.spec.*;
+		import org.apache.http.impl.client.*;
+		import org.apache.http.conn.*;
+		import org.apache.http.util.*;
+		import java.sql.*;
+		import org.xml.sax.*;
+		import org.apache.commons.codec.digest.*;
+		import org.apache.http.client.methods.*;
+		import java.util.function.*;
+		import org.json.*;
+		import java.time.*;
+		import java.util.zip.*;
+		import java.nio.channels.*;
+		import java.lang.reflect.*;txt.var.over-rigth.system alert/(dsp.option.caption-dsl)\index-component+database{%.#}/Skc
+		ggdl.model.option. zip alpha.log{"hexh*hash"}/dns.line.opntional.prp.time-recording
+		hlms. funtion. dsk. component. asl. bin*^{°π}
+		system.alert. index-component. int.bin.descripts.msl
+		log.bin.herxh.°dns.index-componentpublic class Main
+		{
+		public static void main(String[] args)
+		{
+		System.out.println("redirectx*bin");
+		}
+		
+		@Override
+		public Class<?> getClass(AlgorithmParameterSpec)
+		{
+		// TODO: Implement this method
+		return super.getClass(implements);
+		}
+		
+		JarURLConnection.System.out.println(SystemDefaultHttpClient.DnsResolver.byte.assert.Asserts)
+		System.class.continue.Connection[<HttpCookie.HttpAuthenticator>]/HttpClientConnectionOperator
+		
+		IndexOutOfBoundsException.continue.interface.InternalHttpClient
+		SuppressWarnings
+		
+		@Override
+		public void notifyAll(ConnectTimeoutException)
+		{
+		// TODO: Implement this method
+		super.notifyAll(OperatedClientConnection);
+		}.AttributeList. XMLReader. XMLFilter.X509EncodedKeySpec.XXHash32
+		
+		Void
+		
+		
+		
+		@Override
+		public int hashCode(JSONArray)
+		{
+		// TODO: Implement this method
+		return super.hashCode(switch);
+		}@Override
+		protected Object clone(synchronized) throws CloneNotSupportedException
+		{
+		// TODO: Implement this method
+		return super.clone(getClass(ZonedDateTime.ofStrict(ZipFile));
+		}.class.Configurable.implements.NetworkInterface.static.Supplier
+		
+		DSAParameterSpec
+		
+		@Override
+		protected void finalize(CookieStore) throws Throwable
+		{
+		// TODO: Implement this method
+		super.finalize(AsynchronousSocketChannel);
+		}.MGF1ParameterSpec.OperatedClientConnection.byte.case.interface
+		
+		Modifier.System.OperatedClientConnection.AsynchronousSocketChannel.DnsResolver.implements.protected.ProxySelector
+		
+		Modifier.System.OperatedClientConnection.AsynchronousSocketChannel.DnsResolver.implements.protected.ProxySelector
+		}
+		int.bin.descripts.msl
+		IndexOutOfBoundsException.continue.interface.InternalHttpClient
+		java.net
+		import java.net.*;
+		import java.security.spec.*;
+		import org.apache.http.impl.client.*;
+		import org.apache.http.conn.*;
+		import org.apache.http.util.*;
+		import java.sql.*;
+		import org.xml.sax.*;
+		import org.apache.commons.codec.digest.*;
+		import org.apache.http.client.methods.*;
+		import java.util.function.*;
+		import org.json.*;
+		import java.time.*;
+		import java.util.zip.*;
+		import java.nio.channels.*;
+		import java.lang.reflect.*;txt.var.over-rigth.system alert/(dsp.option.caption-dsl)\index-component+database{%.#}/Skc
+		ggdl.model.option. zip alpha.log{"hexh*hash"}/dns.line.opntional.prp.time-recording
+		hlms. funtion. dsk. component. asl. bin*^{°π}
+		system.alert. index-component. int.bin.descripts.msl
+		log.bin.herxh.°dns.index-componentpublic class Main
+		{
+		public static void main(String[] args)
+		{
+		System.out.println("redirectx*bin");
+		}
+		
+		@Override
+		public Class<?> getClass(AlgorithmParameterSpec)
+		{
+		// TODO: Implement this method
+		return super.getClass(implements);
+		}
+		
+		JarURLConnection.System.out.println(SystemDefaultHttpClient.DnsResolver.byte.assert.Asserts)
+		System.class.continue.Connection[<HttpCookie.HttpAuthenticator>]/HttpClientConnectionOperator
+		
+		IndexOutOfBoundsException.continue.interface.InternalHttpClient
+		SuppressWarnings
+		
+		@Override
+		public void notifyAll(ConnectTimeoutException)
+		{
+		// TODO: Implement this method
+		super.notifyAll(OperatedClientConnection);
+		}.AttributeList. XMLReader. XMLFilter.X509EncodedKeySpec.XXHash32
+		
+		Void
+		
+		
+		
+		@Override
+		public int hashCode(JSONArray)
+		{
+		// TODO: Implement this method
+		return super.hashCode(switch);
+		}@Override
+		protected Object clone(synchronized) throws CloneNotSupportedException
+		{
+		// TODO: Implement this method
+		return super.clone(getClass(ZonedDateTime.ofStrict(ZipFile));
+		}.class.Configurable.implements.NetworkInterface.static.Supplier
+		
+		DSAParameterSpec
+		
+		@Override
+		protected void finalize(CookieStore) throws Throwable
+		{
+		// TODO: Implement this method
+		super.finalize(AsynchronousSocketChannel);
+		}.MGF1ParameterSpec.OperatedClientConnection.byte.case.interface
+		
+		Modifier.System.OperatedClientConnection.AsynchronousSocketChannel.DnsResolver.implements.protected.ProxySelector
+		
+		
+		}Modifier.System.OperatedClientConnection.AsynchronousSocketChannel.DnsResolver.implements.protected.ProxySelector
+		"name": ".NET Core Launch (console)",
+		"type": "coreclr",
+		"request": "launch",
+		"preLaunchTask": "build",
+		"program": "${workspaceFolder}/bin/Debug/<target-framework>/<project-name.dll>",
+		"args": [src="Helios.html"></script>documents.download<var><"Helios.xml"></var></datagrid>],
+		"cwd": "${workspaceFolder}",
+		"stopAtEntry": false,
+		"console": "internalConsole",
+		"pipeTransport":    {[-P]}
+		"pipeCwd": "${workspaceFolder}",
+		"pipeProgram": "enter the fully qualified path for the pipe program name, for example '/usr/bin/ssh'",
+		"pipeArgs": ["https://apis.Helios.com/"],"SAMPLER_2D_ARRAY_SHADOW"
+		"pipeArgs": [DESKTOP-409Q1GH, A7A4EAEB-E3F2-42BA-B864-8D28E3FF34C3], "SAMPLER_2D_ARRAY_SHADOW"
+		"debuggerPath": "enter the path for the debugger on the target machine, for example ~/vsdbg/vsdbg"
+		}
+		}
+		]
+		}
+		})
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+  { #include <XenoX.c>
+  
+  //Compiler version gcc  6.3.0
+  
+  int main(EOS)
+  {
+  printf("<command>componet.ING. <div>[log]/ext.terminal.deskot.divice.movile{Version:movile}/("[-P].QnA]")</div>
+  Users.componets.divice.movile<html><helios class="xml">X-UA-Compatible/class:media.DESKTOP</helios></html>
+  xml.divice <select>Document.apis.opl</select></c:Dcoder><Helios class="html"></Helios><div class="xt">dpp</select>
+  <datagrid>MIUI/version, database.("XenoX.c")/X-UA-Compatible, componets. <script src="Helios.html"></script>documents.download<var><"Helios.xml"></var></datagrid>
+  apk.s<article>version<"XenoX.c">.deskot.movile("d.coder")</article>/componet<area>"Xex.json"
+  <?xml version="1.0" encoding="UTF-8"?>
+  <DataProtectionUserConfig SchemaVersion="1">
+  <UserName>PC</UserName>
+  <FriendlyName>PC</FriendlyName>
+  <PCName>DESKTOP-409Q1GH</PCName>
+  <UserId>67f263c8-b4bc-4933-a8dd-ffc6e11d7341</UserId>
+  <Library>
+  <LibraryName>*2112ab0a-c86a-4ffe-a368-0de96e47012e</LibraryName>
+  <Folder>C:\Users\PC\Music</Folder>
+  </Library>
+  <Library>
+  <LibraryName>*e25b5812-be88-4bd9-94b0-29233477b6c3</LibraryName>
+  <Folder>C:\Users\PC\Pictures\Saved Pictures</Folder>
+  </Library>
+  <Library>
+  <LibraryName>*491e922f-5643-4af4-a7eb-4e7a138d8174</LibraryName>
+  <Folder>C:\Users\PC\Videos</Folder>
+  </Library>
+  <Library>
+  <LibraryName>*2b20df75-1eda-4039-8097-38798227d5b7</LibraryName>
+  <Folder>C:\Users\PC\Pictures\Camera Roll</Folder>
+  </Library>
+  <Library>
+  <LibraryName>*7b0db17d-9cd2-4a93-9733-46cc89022e7c</LibraryName>
+  <Folder>C:\Users\PC\Documents</Folder>
+  <Folder>C:\Users\PC\Drive\Documentos</Folder>
+  </Library>
+  <Library>
+  <LibraryName>*a990ae9f-a03b-4e80-94bc-9912d7504104</LibraryName>
+  <Folder>C:\Users\PC\Pictures</Folder>
+  <Folder>C:\Users\PC\OneDrive\Imágenes</Folder>
+  </Library>
+  <UserFolder>C:\Users\PC\.Albion Online Launcher</UserFolder>
+  <UserFolder>C:\Users\PC\.android</UserFolder>
+  <UserFolder>C:\Users\PC\.atom</UserFolder>
+  <UserFolder>C:\Users\PC\.omnisharp</UserFolder>
+  <UserFolder>C:\Users\PC\.QtWebEngineProcess</UserFolder>
+  <UserFolder>C:\Users\PC\.vscode</UserFolder>
+  <UserFolder>C:\Users\PC\ansel</UserFolder>
+  <UserFolder>C:\Users\PC\Creative Cloud Files</UserFolder>
+  <UserFolder>C:\Users\PC\Searches</UserFolder>
+  <UserFolder>C:\Users\PC\3D Objects</UserFolder>
+  <UserFolder>C:\Users\PC\Desktop</UserFolder>
+  <UserFolder>C:\Users\PC\OneDrive</UserFolder>
+  <UserFolder>C:\Users\PC\Contacts</UserFolder>
+  <UserFolder>C:\Users\PC\Pictures</UserFolder>
+  <UserFolder>C:\Users\PC\Favorites</UserFolder>
+  <UserFolder>C:\Users\PC\Videos</UserFolder>
+  <UserFolder>C:\Users\PC\Music</UserFolder>
+  <UserFolder>C:\Users\PC\Downloads</UserFolder>
+  <UserFolder>C:\Users\PC\Documents</UserFolder>
+  <UserFolder>C:\Users\PC\Links</UserFolder>
+  <UserFolder>C:\Users\PC\Saved Games</UserFolder>
+  <LocalCatalogPath1>C:\Users\PC\AppData\Local\Microsoft\Windows\FileHistory\Configuration\Catalog1.edb</LocalCatalogPath1>
+  <LocalCatalogPath2>C:\Users\PC\AppData\Local\Microsoft\Windows\FileHistory\Configuration\Catalog2.edb</LocalCatalogPath2>
+  <StagingArea>
+  <StagingAreaPath>C:\Users\PC\AppData\Local\Microsoft\Windows\FileHistory\Data</StagingAreaPath>
+  <StagingAreaMaximumCapacity>2557253570</StagingAreaMaximumCapacity>
+  <StagingAreaWarningThreshold>1917940177</StagingAreaWarningThreshold>
+  </StagingArea>
+  <AvailabilityPolicies>
+  <TargetAbsenceTime>5</TargetAbsenceTime>
+  <TimeInUnprotectedState>3</TimeInUnprotectedState>
+  </AvailabilityPolicies>
+  <RetentionPolicies>
+  <RetentionPolicyType>DISABLED</RetentionPolicyType>
+  <MinimumRetentionAge>365</MinimumRetentionAge>
+  </RetentionPolicies>
+  <DPFrequency>3600</DPFrequency>
+  <DPStatus>DISABLED</DPStatus>
+  <Target>
+  <TargetName>Disco extraíble (G:)</TargetName>
+  <TargetUrl>G:\</TargetUrl>
+  <TargetVolumePath>\\?\Volume{e1ede429-ffc0-11ec-bc1f-fc3497e1bac6}\</TargetVolumePath>
+  <TargetDriveType>REMOVABLE</TargetDriveType>
+  <TargetConfigPath1>PC\DESKTOP-409Q1GH\Configuration\Config1.xml</TargetConfigPath1>
+  <TargetConfigPath2>PC\DESKTOP-409Q1GH\Configuration\Config2.xml</TargetConfigPath2>
+  <TargetCatalogPath1>PC\DESKTOP-409Q1GH\Configuration\Catalog1.edb</TargetCatalogPath1>
+  <TargetCatalogPath2>PC\DESKTOP-409Q1GH\Configuration\Catalog2.edb</TargetCatalogPath2>
+  <TargetBackupStorePath>PC\DESKTOP-409Q1GH\Data</TargetBackupStorePath>
+  <TargetWarningThreshold>98</TargetWarningThreshold>
+  </Target>
+  </DataProtectionUserConfig>");
+  return 0;
+  } }
+}
+rootProject.name = "XenoX"
+include ':app'
